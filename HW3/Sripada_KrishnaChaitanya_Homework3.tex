@@ -1,0 +1,173 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\graphicspath{{.}}
+\usepackage{listings}
+\usepackage{verbatim}
+\lstset{
+language=[LaTeX]TeX,
+backgroundcolor=\color{gray!25},
+basicstyle=\ttfamily,
+columns=flexible,
+breaklines=true
+}
+\captionsetup{labelsep=space,justification=justified,singlelinecheck=off}
+\reversemarginpar
+\usepackage[paper=a4paper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=20mm,      % Length of section titles
+            marginparsep=0.8mm,       % Space between titles and text
+            margin=12mm,              % 25mm margins
+            includemp]{geometry}
+
+\begin{document}
+\section*{}
+\begin{flushleft}
+CSCI 5502 - Data Mining - Homework 3\\
+Name: Krishna Chaitanya Sripada\\
+Student ID: 104375417\\
+Honor Pledge: On my honor, as a University of Colorado at Boulder student, I have neither given nor received unauthorized assistance on this work.
+\end{flushleft}
+\section*{Ans 1.}
+\begin{flushleft}
+a. lift(ski, football) =  (1500/4000) /((2000/4000) * (2500/4000)) = 0.375/0.3125 = 1.2\\
+Since the lift measure is greater than 1, the correlation relationship between ski and playing football is positive.\\
+\vspace{0.5em}
+b. Since the association rule ``ski $\Rightarrow$ football'' is mined, let us assume X = ski and Y = football.\\
+Support = P( X$\cup$Y) = 1500/4000 = 0.375 = 37.5\%.\\
+Confidence = P(Y|X) = 1500/2000 = 0.75 = 75\%.\\
+Since the support value is 37.5\% and Confidence value is 75\% and they satisfy the minimum support and minimum confidence thresholds, the association rule ``ski $\Rightarrow$football''  is strong.
+\end{flushleft}
+\section*{Ans 2.}
+\begin{flushleft}
+a. Since min\_support = 60\%, the maximum number of possible frequent itemsets = 3:\\
+\vspace{0.5em}
+b. Apriori Algorithm for finding the frequent Itemsets:\\
+\vspace{0.5em}
+i. By scanning the table, we find the set of frequent 1-itemsets ($C_{1}$):\\
+\vspace{0.5em}
+\begin{tabular}{| l | l | l |}
+\hline
+Itemset & Count & Support \\ \hline
+\{B\} & 4 & 80\%\\ \hline
+\{D\} & 1 & 20\%\\ \hline
+\{E\} & 3 & 60\%\\ \hline
+\{F\} & 1 & 20\%\\ \hline
+\{G\} & 3 & 60\%\\ \hline
+\{I\} & 3 & 60\%\\ \hline
+\{N\} & 4 & 80\%\\ \hline
+\{O\} & 1 & 20\%\\ \hline
+\{S\} & 1 & 20\%\\ \hline
+\{T\} & 1 & 20\%\\ \hline
+\{Z\} & 3 & 60\%\\ \hline
+\end{tabular}
+\\
+\vspace{0.5em}
+ii. After pruning this data, itemsets \{D\}, \{F\}, \{O\}, \{S\}, \{T\} are removed. So $L_{1}$ is: \\
+\vspace{0.5em}
+\begin{tabular}{| l | l | l |}
+\hline
+Itemset & Count & Support \\ \hline
+\{B\} & 4 & 80\%\\ \hline
+\{E\} & 3 & 60\%\\ \hline
+\{G\} & 3 & 60\%\\ \hline
+\{I\} & 3 & 60\%\\ \hline
+\{N\} & 4 & 80\%\\ \hline
+\{Z\} & 3 & 60\%\\ \hline
+\end{tabular}
+\\
+\vspace{20em}
+iii. By scanning the table, we find the set of frequent 2-itemsets ($C_{2}$):\\
+\vspace{0.5em}
+\begin{tabular}{| l | l | l |}
+\hline
+Itemset & Count & Support \\ \hline
+\{B,E\} & 2 & 40\%\\ \hline
+\{B,G\} & 2 & 40\%\\ \hline
+\{B,I\} & 3 & 60\%\\ \hline
+\{B,N\} & 4 & 80\%\\ \hline
+\{B,Z\} & 2 & 40\%\\ \hline
+\{E,G\} & 1 & 20\%\\ \hline
+\{E,I\} & 2 & 20\%\\ \hline
+\{E,N\} & 2 & 40\%\\ \hline
+\{E,Z\} & 1 & 20\%\\ \hline
+\{G,I\} & 1 & 20\%\\ \hline
+\{G,N\} & 2 & 40\%\\ \hline
+\{G,Z\} & 3 & 60\%\\ \hline
+\{I,N\} & 3 & 60\%\\ \hline
+\{I,Z\} & 1 & 20\%\\ \hline
+\{N,Z\} & 2 & 40\%\\ \hline
+\end{tabular}
+\\
+\vspace{0.5em}
+iv. After pruning this data, itemsets \{B,E\}, \{B,G\}, \{B,Z\}, \{E,G\}, \{E,I\}, \{E,N\}, \{E,Z\}, \{G,I\}, \{G,N\}, \{I,Z\}, \{N,Z\} are removed. So $L_{2}$ is: \\
+\vspace{0.5em}
+\begin{tabular}{| l | l | l |}
+\hline
+Itemset & Count & Support \\ \hline
+\{B,I\} & 3 & 60\%\\ \hline
+\{B,N\} & 4 & 80\%\\ \hline
+\{G,Z\} & 3 & 60\%\\ \hline
+\{I,N\} & 3 & 60\%\\ \hline
+\end{tabular}
+\\
+\vspace{0.5em}
+v. By scanning the table, we find the set of frequent 3-itemsets ($C_{3}$):\\
+\vspace{0.5em}
+\begin{tabular}{| l | l | l |}
+\hline
+Itemset & Count & Support \\ \hline
+\{B,I,N\} & 3 & 60\%\\ \hline
+\end{tabular}
+\\
+\vspace{0.5em}
+v. After pruning this data, no itemset is removed and since frequent 4-itemsets cannot be found, the algorithm ends here. $L_{3}$ is: \\
+\vspace{0.5em}
+\begin{tabular}{| l | l | l |}
+\hline
+Itemset & Count & Support \\ \hline
+\{B,I,N\} & 3 & 60\%\\ \hline
+\end{tabular}
+\\
+\vspace{0.5em}
+c. The number of rounds of database scans is 3. The total number of candidates =11 (6+4+1).\\
+\vspace{0.5em}
+d. In the first approach, since all frequent \textit{k}-itemsets are part of the candidate \textit{k}-itemsets, it produces $\mathcal{O}(\abs{F_{k-1}} * \abs{F_{1}})$ where $\abs{F_{k}}$ is the number of frequent \textit{k}-itemsets. The computational complexity is $\mathcal{O}(\sum\limits_{k=1}^n \abs{F_{k-1}}\abs{F_{1}})$.\\ 
+In the second approach, since there are `n' items, the number of candidates itemsets generated at level \textit{k} is equal to ${n\choose k}$. Given that the amount of computations needed for each candidate is $\mathcal{O}(k)$, the computational complexity would be $\mathcal{O}$($\sum\limits_{k=1}^n k$ * $n\choose k$) = $\mathcal{O}(n * 2^{n-1})$.\\
+The first approach has a substantial improvement over the second approach however, the first approach still produces a large number of unnecessary candidates. To avoid this, we have to make sure that for every candidate \textit{k}-itemset that survives the pruning step, every item in the candidate must be contained in atleast \textit{k}-1 of the frequent (\textit{k}-1)-itemsets.\\ 
+\end{flushleft}
+\section*{Ans 3.}
+\begin{flushleft}
+a. The largest value of k = 3 and the data containing the frequent itemset is \{(Bread, Milk, Cheese), (Bread, Milk, Pie)\}. \\
+The non-empty subsets for this frequent itemset are \\
+1. \{Bread, Milk\}, \{Bread, Cheese\}, \{Milk, Cheese\}, \{Bread\}, \{Milk\}, \{Cheese\}.\\
+2. \{Bread, Milk\}, \{Bread, Pie\}, \{Milk, Pie\}, \{Bread\}, \{Milk\}, \{Pie\}.\\
+\vspace{0.5em}
+For 1. ,the association rules are:\\
+Bread $\wedge$ Milk $\Rightarrow$ Cheese [support = 3/4 = 75\%, confidence = 3/4=75\%]\\
+Bread $\wedge$ Cheese $\Rightarrow$ Milk [support = 3/4 = 75\%, confidence = 3/3=100\%]\\
+Milk $\wedge$ Cheese $\Rightarrow$ Bread [support = 3/4 = 75\%, confidence = 3/3=100\%]\\
+\vspace{0.5em}
+Since min\_support = 60\% and min\_confidence = 80\%, the rules that satisfy are:\\
+Bread $\wedge$ Cheese $\Rightarrow$ Milk [75\%,100\%]\\
+Milk $\wedge$ Cheese $\Rightarrow$ Bread [75\%,100\%]\\
+\vspace{1em}
+For 2. ,the association rules are:\\
+Bread $\wedge$ Milk $\Rightarrow$ Pie [support = 3/4 = 75\%, confidence = 3/4=75\%]\\
+Bread $\wedge$ Pie $\Rightarrow$ Milk [support = 3/4 = 75\%, confidence = 3/3=100\%]\\
+Milk $\wedge$ Pie $\Rightarrow$ Bread [support = 3/4 = 75\%, confidence = 3/3=100\%]\\
+\vspace{0.5em}
+Since min\_support = 60\% and min\_confidence = 80\%, the rules that satisfy are:\\
+Bread $\wedge$ Pie $\Rightarrow$ Milk [75\%,100\%]\\
+Milk $\wedge$ Pie $\Rightarrow$ Bread [75\%,100\%]\\
+\vspace{0.5em}
+b. Since min\_support = 60\% and min\_confidence = 80\%, the largest value of k=3 and the frequent dataset is \{(Wonder-Bread, Sweet-Pie, Sunset-Milk), (Wonder-Bread, Sweet-Pie, Dairyland-Milk), (Wonder-Bread, Dairyland-Cheese, Sunset-Milk)\}
+\end{flushleft}
+\end{document}
