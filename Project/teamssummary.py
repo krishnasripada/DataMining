@@ -9,7 +9,7 @@ conn = sqlite3.connect("NBAdataset.db")
 c = conn.cursor()
 yearsofevaluation = []
 informationGainAllAttr = {}
-attributes = ['FG%', 'ORB', 'DRB', 'TRB','AST','STL','BLK','TOV','PTS','PF']
+attributes = ['FG%', 'ORB', 'DRB','AST','STL','BLK','TOV','PTS','PF','PTS/G']
 
 for i in range(1985, 2015):
     yearsofevaluation.append(i)
@@ -112,5 +112,5 @@ for keys,values in informationGainAllAttr.iteritems():
     bestAttrs.update({keys: sum(values)/float(len(values))})
 
 top5 = sorted(bestAttrs.items(), key=operator.itemgetter(1), reverse = True)
-print top5[:5]
+print top5[:7]
 
