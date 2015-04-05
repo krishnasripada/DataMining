@@ -11,7 +11,7 @@ yearsofevaluation = []
 informationGainAllAttr = {}
 attributes = ['FG%', 'ORB', 'DRB','AST','STL','BLK','TOV','PTS','PF','PTS/G']
 
-for i in range(1985, 2015):
+for i in range(1995, 2015):
     yearsofevaluation.append(i)
 
 for year in yearsofevaluation:
@@ -98,7 +98,7 @@ for year in yearsofevaluation:
 
         infoGain = expectedInfoDataset - expectedInfoForAttr
         
-        #print "Information Gain for Attribute: "+ attr+" is: ", infoGain
+        print "For year ", year, " Information Gain for Attribute: "+ attr+" is: ", infoGain
 
         if attr in informationGainAllAttr:
             informationGainAllAttr[attr]+= [infoGain]

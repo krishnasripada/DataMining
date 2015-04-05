@@ -7,7 +7,7 @@ conn = sqlite3.connect("NBAdataset.db")
 c = conn.cursor()
 
 yearsofevaluation = []
-attributes = ['FG%','DRB']
+attributes = ['FG%','DRB','TOV','PTS/G']
 
 for i in range(1995, 2015):
     yearsofevaluation.append(i)

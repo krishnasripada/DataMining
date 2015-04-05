@@ -6,7 +6,7 @@ import operator
 conn = sqlite3.connect("NBAdataset.db")
 c = conn.cursor()
 yearsofevaluation = []
-attributes = ['FG%','DRB']
+attributes = ['FG%','DRB', 'TOV']
 best_acc = 0.0
 best_weight = []
 
@@ -20,6 +20,7 @@ for i in np.arange(0.0, 1.01, 0.01):
     weightOfAttrs = []
 
     weightOfAttrs.append(1.0)
+    weightOfAttrs.append(0.6)
     weightOfAttrs.append(i)
 
     for year in yearsofevaluation:
@@ -60,6 +61,7 @@ for i in np.arange(0.0, 1.01, 0.01):
         final_denom.append(denominator)
         #print "Completed year ", year
         #print "For Year: ", year, " weights ", weightOfAttrs, " Accuracy is: ", numerator/float(denominator)
+        
     if sum(final_num)/float(sum(final_denom)) >=best_acc:
         best_acc = sum(final_num)/float(sum(final_denom))
         best_weight = weightOfAttrs
